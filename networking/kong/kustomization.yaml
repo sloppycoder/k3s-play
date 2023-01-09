@@ -1,0 +1,6 @@
+namespace: kong
+
+resources:
+  - namespace.yaml
+  - helmchart.yaml
+

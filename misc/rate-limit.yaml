@@ -1,0 +1,17 @@
+apiVersion: configuration.konghq.com/v1
+kind: KongClusterPlugin
+metadata:
+  name: kong-rate-limit
+  namespace: kong
+  annotations:
+    kubernetes.io/ingress.class: kong
+  labels:
+    global: "true"
+config: 
+  second: 5
+  hour: 10000
+  policy: local
+  redis_host: redis.infra
+  redis_port: 6379
+  redis_password: pass147
+plugin: rate-limiting

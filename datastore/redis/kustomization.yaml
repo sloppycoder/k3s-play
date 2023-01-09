@@ -1,0 +1,13 @@
+namespace: infra
+
+resources:
+  - redis.yaml
+
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: redis-config
+    files:
+      - redis.conf

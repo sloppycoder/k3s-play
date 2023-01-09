@@ -1,0 +1,14 @@
+resources:
+  - namespace.yaml
+  - helmchart.yaml
+
+namespace: datadog
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: datadog
+    envs:
+      - datadog_keys.env
+

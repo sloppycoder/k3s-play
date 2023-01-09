@@ -1,0 +1,25 @@
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: newrelic-bundle
+  namespace: newrelic
+spec:
+  repo: https://helm-charts.newrelic.com 
+  chart: nri-bundle
+  version: 
+  targetNamespace: newrelic
+  valuesContent: |-
+    global:
+      licenseKey: <license_key> 
+      cluster: super6
+      lowDataMode: true
+    newrelic-infrastructure:
+      privileged: true
+    ksm:
+      enabled: true
+    kubeEvents:
+      enabled: true
+    newrelic-prometheus-agent:
+      enabled: true
+    logging:
+      enabled: true
