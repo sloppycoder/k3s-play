@@ -38,7 +38,7 @@ Cluster 2 consists of 6 [Raspberry Pi Compute Module 4](https://www.raspberrypi.
 | folder | content |
 |---|---|
 | [networking](networking/) | networking setup using kong ingress and servicelb load balancer |
-| [storage](storoge/) | storage using [Longhorn](http://longhorn.io) and nfs-subdir-provisioner |
+| [storage](storage/) | storage using [Longhorn](http://longhorn.io) and nfs-subdir-provisioner |
 | [datastore](datastore/) | data stores, currently only has Redis |
 | [monitoring](monitoring/) | monitorign stack. either [New Relic](https://newrelic.com/) or [Datadog](https://www.datadoghq.com/) |
 | [misc](misc/) | utility scripts etc |
