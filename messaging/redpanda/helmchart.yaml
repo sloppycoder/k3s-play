@@ -1,0 +1,35 @@
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: redpanda
+  namespace: redpanda
+spec:
+  repo: https://charts.redpanda.com/
+  chart: redpanda
+  version: "2.4.2"
+  targetNamespace: redpanda
+  valuesContent: |-
+    storage:
+      persistentVolume:
+        storageClass: "longhorn"
+        enabled: true
+        size: 2Gi
+    statefulset:
+      replicas: 1
+# ---
+# apiVersion: helm.cattle.io/v1
+# kind: HelmChart
+# metadata:
+#   name: redpanda-console
+#   namespace: redpanda
+# spec:
+#   repo: https://dl.redpanda.com/public/console/helm/charts/
+#   chart: console
+#   targetNamespace: redpanda
+#   valuesContent: |-
+#     ingress:
+#       enabled: false
+#     extraEnv:
+#       KAFKA_RACKID: 1
+#       KAFKA_BROKERS: redpanda-0.redpanda.redpanda.svc.cluster.local.:9092

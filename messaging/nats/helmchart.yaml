@@ -1,0 +1,27 @@
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: nats
+  namespace: nats-system
+spec:
+  repo: https://nats-io.github.io/k8s/helm/charts/
+  chart: nats
+  targetNamespace: nats-system
+  valuesContent: |-
+    cluster:
+      enabled: false
+      replicas: 1
+    nats:
+      jetstream:
+        enabled: true
+
+        memStorage:
+          enabled: true
+          size: 1Gi
+
+        fileStorage:
+          enabled: true
+          size: 2Gi
+          storageClassName: "longhorn-local"
+          storageDirectory: /data/
