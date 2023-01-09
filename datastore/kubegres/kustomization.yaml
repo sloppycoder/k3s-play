@@ -1,0 +1,2 @@
+resources:
+  - https://raw.githubusercontent.com/reactive-tech/kubegres/v1.16/kubegres.yaml
