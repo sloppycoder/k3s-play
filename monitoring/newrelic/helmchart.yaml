@@ -6,7 +6,7 @@ metadata:
 spec:
   repo: https://helm-charts.newrelic.com 
   chart: nri-bundle
-  version: 
+  version: 5.0.2
   targetNamespace: newrelic
   valuesContent: |-
     global:
