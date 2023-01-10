@@ -13,7 +13,11 @@ spec:
     cluster:
       enabled: false
       replicas: 1
+
     nats:
+      externalAccess: true
+      advertise: false
+      
       jetstream:
         enabled: true
 
@@ -26,3 +30,19 @@ spec:
           size: 2Gi
           storageClassName: "longhorn-local"
           storageDirectory: /data/
+
+---
+apiVersion: helm.cattle.io/v1
+kind: HelmChart
+metadata:
+  name: nack
+  namespace: nats-system
+spec:
+  repo: https://nats-io.github.io/k8s/helm/charts/
+  chart: nack
+  version: 0.19.0
+  targetNamespace: nats-system
+  valuesContent: |-
+    jetstream:
+      nats:
+        url: nats://nats:4222

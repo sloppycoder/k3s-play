@@ -1,4 +1,5 @@
 resources:
   - namespace.yaml
+  - https://raw.githubusercontent.com/nats-io/nack/v0.9.0/deploy/crds.yml
   - helmchart.yaml
  
