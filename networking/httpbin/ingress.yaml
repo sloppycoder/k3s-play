@@ -1,0 +1,48 @@
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: httpbin-http
+  annotations:
+    konghq.com/protocols: "http"
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /
+        backend:
+          service:
+            name: httpbin
+            port:
+              number: 80
+    host: pie4.lan
+  
+---
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: httpbin-https
+  annotations:
+    ingress.kubernetes.io/force-ssl-redirect: "true"
+    konghq.com/https-redirect-status-code: "308"
+    konghq.com/protocols: "https,http"
+    cert-manager.io/cluster-issuer: letsencrypt
+spec:
+  ingressClassName: kong
+  rules:
+  - http:
+      paths:
+      - pathType: ImplementationSpecific
+        path: /
+        backend:
+          service:
+            name: httpbin
+            port:
+              number: 80
+    host: abank.app.vino9.net
+  tls:
+    - secretName: abank-app-vino9-net
+      hosts:
+      - abank.app.vino9.net      

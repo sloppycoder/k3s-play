@@ -1,12 +1,7 @@
 *.bak
 
-vagrant/bin/*
-vagrant/.vagrant/*
-
 bootstrap.txt
 
-datadog*.env
-kong-auth*.env
-
-misc/certbot/*
 *.pem
+
+*.env

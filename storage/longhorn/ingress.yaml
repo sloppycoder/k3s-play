@@ -5,6 +5,7 @@ metadata:
   namespace: longhorn-system
   annotations:
     konghq.com/strip-path: "true"
+    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: kong
   rules:
@@ -23,3 +24,7 @@ spec:
     # if access using an internal host name, security is relaxed
     # if access from an external host name, require authentication
     host: pie4.lan
+  tls:
+    - secretName: manage-app-vino9-net
+      hosts:
+      - manage.app.vino9.net

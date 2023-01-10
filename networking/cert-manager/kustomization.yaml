@@ -1,0 +1,16 @@
+
+resources:
+  - namespace.yaml
+  - https://github.com/cert-manager/cert-manager/releases/download/v1.10.1/cert-manager.crds.yaml
+  - helmchart.yaml
+  - letsencrypt.yaml
+
+namespace: cert-manager
+
+generatorOptions:
+  disableNameSuffixHash: true
+  
+secretGenerator:
+- name: my-aws-credential
+  envs:
+  - aws_user.env
