@@ -1,6 +1,6 @@
 apiVersion: v1
 kind: Namespace
 metadata:
-  name: infra
+  name: vinobank
   labels:
     istio-injection: disabled

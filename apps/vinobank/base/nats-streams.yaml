@@ -1,0 +1,24 @@
+---
+apiVersion: jetstream.nats.io/v1beta2
+kind: Stream
+metadata:
+  name: transfer-stream
+spec:
+  name: transfer-stream
+  subjects: ["transfers.*"]
+  storage: memory
+  maxAge: 1h
+
+---
+apiVersion: jetstream.nats.io/v1beta2
+kind: Consumer
+metadata:
+  name: transfer-consumer
+spec:
+  streamName: transfer-stream
+  durableName: transfer-consumer
+  deliverSubject: transfer-consumer.trasnfers
+  deliverPolicy: all
+  filterSubject: orders.received
+  maxDeliver: 20
+  ackPolicy: explicit

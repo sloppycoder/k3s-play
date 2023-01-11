@@ -1,0 +1,20 @@
+namespace: vinobank
+
+resources:
+  - redis.yaml
+  - postgres.yaml
+  - nats-streams.yaml
+
+
+generatorOptions:
+  disableNameSuffixHash: true
+
+secretGenerator:
+  - name: postgres-secret
+    envs:
+      - postgres.env
+
+configMapGenerator:
+  - name: redis-config
+    files:
+      - redis.conf
