@@ -1,0 +1,16 @@
+
+resources:
+  - httpbin.yaml
+  - auth.yaml
+  - ingress.yaml
+
+generatorOptions:
+  disableNameSuffixHash: true
+  
+secretGenerator:
+- name: admin-credential
+  envs:
+  - kong_admin.env
+- name: user-credential
+  envs:
+  - kong_user.env

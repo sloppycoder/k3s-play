@@ -1,0 +1,23 @@
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongPlugin
+metadata:
+  name: basic-auth
+  annotations:
+    kubernetes.io/ingress.class: kong
+config: 
+  hide_credentials: true
+plugin: basic-auth
+
+
+---
+apiVersion: configuration.konghq.com/v1
+kind: KongConsumer
+metadata:
+  name: auth-consumer
+  annotations:
+    kubernetes.io/ingress.class: kong
+username: admin
+credentials:
+  - admin-credential
+  - user-credential

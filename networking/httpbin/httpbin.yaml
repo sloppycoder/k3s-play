@@ -5,6 +5,8 @@ metadata:
   name: httpbin
   labels:
     app: httpbin
+  annotations:
+      konghq.com/plugins: basic-auth
 spec:
   ports:
   - name: http
