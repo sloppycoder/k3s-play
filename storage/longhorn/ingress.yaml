@@ -5,7 +5,6 @@ metadata:
   namespace: longhorn-system
   annotations:
     konghq.com/strip-path: "true"
-    cert-manager.io/cluster-issuer: letsencrypt
 spec:
   ingressClassName: kong
   rules:
@@ -18,13 +17,4 @@ spec:
             name: longhorn-frontend
             port:
               number: 80
-    # the host entry is only required if you want to control from what
-    # URL this ingress is exposed. In my case I use host to distiguish
-    # if the URL is access internally or externally. e.g.
-    # if access using an internal host name, security is relaxed
-    # if access from an external host name, require authentication
     host: pie4.lan
-  tls:
-    - secretName: manage-app-vino9-net
-      hosts:
-      - manage.app.vino9.net
