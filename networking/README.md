@@ -5,8 +5,7 @@
 # restrict servicelb pods to certain nodes
 servicelb/restrict.sh
 
-# deploy kong ingress and cert-manager
-kubectl apply -k kong
+# deploy cert-manager
 kubectl apply -k cert-manager
 
 # deploy http as example
