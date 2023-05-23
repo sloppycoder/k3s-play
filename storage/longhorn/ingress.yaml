@@ -1,20 +1,32 @@
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+---
+apiVersion: traefik.containo.us/v1alpha1
+kind: Middleware
 metadata:
-  name: longhorn-ingress
+  name: strip-prefix-longhorn-ui
   namespace: longhorn-system
-  annotations:
-    konghq.com/strip-path: "true"
 spec:
-  ingressClassName: kong
-  rules:
-  - http:
-      paths:
-      - pathType: ImplementationSpecific
-        path: /longhorn
-        backend:
-          service:
-            name: longhorn-frontend
-            port:
-              number: 80
-    host: pie4.lan
+  stripPrefix:
+    prefixes:
+      - /longhorn
+
+---
+kind: IngressRoute
+apiVersion: traefik.containo.us/v1alpha1
+metadata:
+  name: longhorn-frontend
+  namespace: longhorn-system
+spec:
+  entryPoints:
+    - web
+  routes:
+    - kind: Rule
+      match: PathPrefix(`/longhorn`)
+      priority: 10
+      middlewares:
+        - name: strip-prefix-longhorn-ui
+          namespace: longhorn-system
+      services:
+        - kind: Service
+          name: longhorn-frontend
+          port: 80
+
